@@ -48,9 +48,11 @@ ENV PATH /opt/miniforge3/bin:$PATH
 ARG PHABLES_VERSION=1.3.2
 
 RUN set -eux ; \
-  mamba install -y -c conda-forge -c bioconda -c defaults \
-  phables=${PHABLES_VERSION} ; \
-  mamba install -y -c gurobi gurobi
+  mamba install -y -c conda-forge -c anaconda -c bioconda -c defaults \
+  phables=${PHABLES_VERSION} curl "koverage>=0.1.8" minimap2 samtools \
+  "mmseqs2=13.45111" biopython python-igraph pysam "networkx>=2.8.6" \
+  scipy numpy pandas  more-itertools tqdm click "metasnek>=0.0.3" \
+  fraggenescan hmmer
 ENV PATH /opt/miniforge3/bin:$PATH
 RUN conda clean -af -y
 

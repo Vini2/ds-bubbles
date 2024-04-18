@@ -49,11 +49,9 @@ ARG PHABLES_VERSION=1.3.2
 
 RUN set -eux ; \
   mamba install -y -c conda-forge -c anaconda -c bioconda -c defaults \
-  phables=${PHABLES_VERSION} curl "koverage>=0.1.8" minimap2 samtools \
-  "mmseqs2=13.45111" biopython python-igraph pysam "networkx>=2.8.6" \
-  scipy numpy pandas  more-itertools tqdm click "metasnek>=0.0.3" \
-  fraggenescan hmmer
+  phables=${PHABLES_VERSION} ;
 ENV PATH /opt/miniforge3/bin:$PATH
 RUN conda clean -af -y
-
+RUN mkdir -p /phables /opt/gurobi
+RUN ln -s /opt/miniforge3/lib/python3.10/site-packages/phables/workflow/conda /conda
 RUN phables install

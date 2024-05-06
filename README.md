@@ -25,7 +25,7 @@ For detailed instructions on installation and usage, please refer to the [**docu
 
 Phables is available on bioconda at [https://anaconda.org/bioconda/phables](https://anaconda.org/bioconda/phables) and on PyPI at [https://pypi.org/project/phables/](https://pypi.org/project/phables/). Feel free to pick your package manager, but we recommend that you use [`conda`](https://docs.conda.io/en/latest/).
 
-**NEW:** Phables can now resolve bacteriophage genomes from long-read assemblies.
+**NEW:** Phables is now available as a Docker container from [Docker hub](https://hub.docker.com/r/linsalrob/phables). Click [here](https://github.com/Vini2/phables/tree/develop/container) for more details.
 
 ## Setting up Phables
 

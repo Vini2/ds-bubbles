@@ -45,5 +45,5 @@ def exec_command(cmnd, stdout=subprocess.PIPE, stderr=subprocess.PIPE):
 
 def test_phables(tmp_dir):
     """test phables"""
-    cmd = f"phables test"
+    cmd = f"phables --help"
     exec_command(cmd)

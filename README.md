@@ -23,7 +23,7 @@ Phables is a tool developed to resolve bacteriophage genomes using assembly grap
 
 For detailed instructions on installation and usage, please refer to the [**documentation hosted at Read the Docs**](https://phables.readthedocs.io/en/latest/).
 
-Phables is available on bioconda at [https://anaconda.org/bioconda/phables](https://anaconda.org/bioconda/phables) and on PyPI at [https://pypi.org/project/phables/](https://pypi.org/project/phables/). Feel free to pick your package manager, but we recommend that you use [`conda`](https://docs.conda.io/en/latest/).
+Phables is available on Bioconda at [https://anaconda.org/bioconda/phables](https://anaconda.org/bioconda/phables) and on PyPI at [https://pypi.org/project/phables/](https://pypi.org/project/phables/). Feel free to pick your package manager, but we recommend that you use [`conda`](https://docs.conda.io/en/latest/).
 
 **NEW:** Phables is now available as a Docker container from [Docker hub](https://hub.docker.com/r/linsalrob/phables). Click [here](https://github.com/Vini2/phables/tree/develop/container) for more details.
 
@@ -31,7 +31,7 @@ Phables is available on bioconda at [https://anaconda.org/bioconda/phables](http
 
 ### Option 1: Installing Phables using conda (recommended)
 
-You can install Phables from bioconda at [https://anaconda.org/bioconda/phables](https://anaconda.org/bioconda/phables). Make sure you have [`conda`](https://docs.conda.io/en/latest/) installed.
+You can install Phables from Bioconda at [https://anaconda.org/bioconda/phables](https://anaconda.org/bioconda/phables). Make sure you have [`conda`](https://docs.conda.io/en/latest/) installed.
 
 ```bash
 # create conda environment and install phables

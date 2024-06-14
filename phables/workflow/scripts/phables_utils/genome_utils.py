@@ -1,7 +1,16 @@
 # Class for genome path
 class GenomePath:
     def __init__(
-        self, id, bubble_case, node_order, node_order_human, node_id_order, path, coverage, length, gc
+        self,
+        id,
+        bubble_case,
+        node_order,
+        node_order_human,
+        node_id_order,
+        path,
+        coverage,
+        length,
+        gc,
     ):
         self.id = id
         self.bubble_case = bubble_case

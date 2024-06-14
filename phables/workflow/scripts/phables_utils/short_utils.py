@@ -132,11 +132,10 @@ def resolve_short(
             unitig2_len = len(str(graph_unitigs[unitig2_name]))
 
             if unitig1 != "" and unitig2 != "":
-
-                # Case 2 - both are circular
-                case_name = "case2_circular"
-
                 if all_self_looped:
+                    # Case 2 - both are circular
+                    case_name = "case2_circular"
+
                     case2_found.add(my_count)
 
                     cycle_components.add(my_count)
@@ -189,7 +188,7 @@ def resolve_short(
 
                         genome_path = GenomePath(
                             id=f"{prefix}phage_comp_{my_count}_cycle_{cycle_number}",
-                            bubble_case= case_name,
+                            bubble_case=case_name,
                             node_order=[
                                 f"{repeat_unitig_name}+",
                                 f"{unitig_name}+",
@@ -215,7 +214,6 @@ def resolve_short(
 
                 # Case 2 - only one is circular
                 elif one_circular:
-
                     case_name = "case2_linear"
 
                     case2_found.add(my_count)
@@ -261,7 +259,6 @@ def resolve_short(
                         resolved_edges.add(repeat_unitig)
 
                         # Get repeat count
-
                         repeat_count = max(
                             int(
                                 unitig_coverages[repeat_unitig_name]
@@ -294,7 +291,9 @@ def resolve_short(
                         ]
 
                         repeat_order = f"{repeat_unitig_name}:fwd," * repeat_count
-                        path_with_repeats_human = f"{unitig_name}:fwd,{repeat_order[:-1]}"
+                        path_with_repeats_human = (
+                            f"{unitig_name}:fwd,{repeat_order[:-1]}"
+                        )
                         node_id_order_with_repeats = [unitig_to_consider] + [
                             repeat_unitig for x in range(repeat_count)
                         ]
@@ -319,7 +318,6 @@ def resolve_short(
 
         # Case 3 components
         elif len(candidate_nodes) > 2 and len(candidate_nodes) <= compcount:
-
             case_name = "case3_circular"
 
             # Create initial directed graph with coverage values
@@ -781,11 +779,17 @@ def resolve_short(
 
                                         for c in path_order:
                                             if c.endswith("+"):
-                                                path_node_order_human += f"{c[:-1]}:fwd,"
+                                                path_node_order_human += (
+                                                    f"{c[:-1]}:fwd,"
+                                                )
                                             else:
-                                                path_node_order_human += f"{c[:-1]}:rev,"
-                                        
-                                        path_node_order_human = path_node_order_human[:-1]
+                                                path_node_order_human += (
+                                                    f"{c[:-1]}:rev,"
+                                                )
+
+                                        path_node_order_human = path_node_order_human[
+                                            :-1
+                                        ]
 
                                         # Create GenomePath object with path details
                                         genome_path = GenomePath(
@@ -847,9 +851,12 @@ def resolve_short(
                 logger.debug(f"Identified candidate sinks: {sink_candidates}")
 
                 if len(source_candidates) > 0 and len(sink_candidates) > 0:
-
-                    source_node_indices = [unitig_names_rev[x[:-1]] for x in source_candidates]
-                    sink_node_indices = [unitig_names_rev[x[:-1]] for x in sink_candidates]
+                    source_node_indices = [
+                        unitig_names_rev[x[:-1]] for x in source_candidates
+                    ]
+                    sink_node_indices = [
+                        unitig_names_rev[x[:-1]] for x in sink_candidates
+                    ]
 
                     # Create refined directed graph for flow network
                     # ----------------------------------------------------------------------
@@ -971,7 +978,9 @@ def resolve_short(
                                 # Extend subpath using coverages of predecessors
                                 for u_pred in G_edge.predecessors(u):
                                     u_pred_name = unitig_names_rev[u_pred[:-1]]
-                                    u_pred_index = candidate_nodes.index(u_pred_name) + 1
+                                    u_pred_index = (
+                                        candidate_nodes.index(u_pred_name) + 1
+                                    )
                                     u_pred_cov = unitig_coverages[u_pred[:-1]]
                                     u_cov = unitig_coverages[u[:-1]]
 
@@ -997,7 +1006,9 @@ def resolve_short(
                                 # Extend subpath using coverages of successors
                                 for v_succ in G_edge.successors(v):
                                     v_succ_name = unitig_names_rev[v_succ[:-1]]
-                                    v_succ_index = candidate_nodes.index(v_succ_name) + 1
+                                    v_succ_index = (
+                                        candidate_nodes.index(v_succ_name) + 1
+                                    )
                                     v_succ_cov = unitig_coverages[v_succ[:-1]]
                                     v_cov = unitig_coverages[v[:-1]]
 
@@ -1031,7 +1042,9 @@ def resolve_short(
                                 for u_pred in G_edge.predecessors(u):
                                     if junction_pe_coverage[(u_pred[:-1], v[:-1])] > 0:
                                         u_pred_name = unitig_names_rev[u_pred[:-1]]
-                                        u_pred_index = candidate_nodes.index(u_pred_name) + 1
+                                        u_pred_index = (
+                                            candidate_nodes.index(u_pred_name) + 1
+                                        )
                                         if (
                                             (v_index - 1) not in source_node_indices
                                             and (u_index - 1) not in source_node_indices
@@ -1050,9 +1063,12 @@ def resolve_short(
                                 for v_succ in G_edge.successors(v):
                                     if junction_pe_coverage[(u[:-1], v_succ[:-1])] > 0:
                                         v_succ_name = unitig_names_rev[v_succ[:-1]]
-                                        v_succ_index = candidate_nodes.index(v_succ_name) + 1
+                                        v_succ_index = (
+                                            candidate_nodes.index(v_succ_name) + 1
+                                        )
                                         if (
-                                            (v_succ_index - 1) not in source_node_indices
+                                            (v_succ_index - 1)
+                                            not in source_node_indices
                                             and (u_index - 1) not in source_node_indices
                                             and (v_index - 1) not in source_node_indices
                                             and (v_index - 1) not in sink_node_indices
@@ -1070,7 +1086,9 @@ def resolve_short(
 
                     # Add common start to source links
                     for source_v in source_candidates:
-                        source_node_index = candidate_nodes.index(unitig_names_rev[source_v[:-1]]) + 1
+                        source_node_index = (
+                            candidate_nodes.index(unitig_names_rev[source_v[:-1]]) + 1
+                        )
                         source_node_cov = unitig_coverages[source_v[:-1]]
                         cov_upper_bound = int(max_comp_cov * alpha)
 
@@ -1088,7 +1106,9 @@ def resolve_short(
 
                     # Add common sink to end links
                     for sink_v in sink_candidates:
-                        sink_node_index = candidate_nodes.index(unitig_names_rev[sink_v[:-1]]) + 1
+                        sink_node_index = (
+                            candidate_nodes.index(unitig_names_rev[sink_v[:-1]]) + 1
+                        )
                         sink_node_cov = unitig_coverages[sink_v[:-1]]
                         cov_upper_bound = int(max_comp_cov * alpha)
 
@@ -1101,9 +1121,11 @@ def resolve_short(
                             )
                         )
 
-                        subpaths[subpath_count] = [sink_node_index, len(candidate_nodes) + 1]
+                        subpaths[subpath_count] = [
+                            sink_node_index,
+                            len(candidate_nodes) + 1,
+                        ]
                         subpath_count += 1
-
 
                     logger.debug(f"edge_list_indices: {edge_list_indices}")
                     logger.debug(f"subpaths: {subpaths}")
@@ -1169,7 +1191,11 @@ def resolve_short(
                                             # Get mapped unitigs in order from the flow network
                                             path_order = []
                                             for path_edge in candidate_paths[0]:
-                                                if not( path_edge == 0 or path_edge == len(candidate_nodes) + 1):
+                                                if not (
+                                                    path_edge == 0
+                                                    or path_edge
+                                                    == len(candidate_nodes) + 1
+                                                ):
                                                     path_order.append(
                                                         edge_list_indices[path_edge]
                                                     )
@@ -1218,11 +1244,17 @@ def resolve_short(
 
                                             for c in path_order:
                                                 if c.endswith("+"):
-                                                    path_node_order_human += f"{c[:-1]}:fwd,"
+                                                    path_node_order_human += (
+                                                        f"{c[:-1]}:fwd,"
+                                                    )
                                                 else:
-                                                    path_node_order_human += f"{c[:-1]}:rev,"
-                                            
-                                            path_node_order_human = path_node_order_human[:-1]
+                                                    path_node_order_human += (
+                                                        f"{c[:-1]}:rev,"
+                                                    )
+
+                                            path_node_order_human = (
+                                                path_node_order_human[:-1]
+                                            )
 
                                             # Create GenomePath object with path details
                                             genome_path = GenomePath(
@@ -1371,7 +1403,11 @@ def resolve_short(
                 and len(in_degree) > 0
                 and len(out_degree) > 0
             ):
-                coverage_frac = max(path_coverages) / min(path_coverages) if min(path_coverages) > 0 else 1
+                coverage_frac = (
+                    max(path_coverages) / min(path_coverages)
+                    if min(path_coverages) > 0
+                    else 1
+                )
 
                 # Create GenomeComponent object with component details
                 genome_comp = GenomeComponent(

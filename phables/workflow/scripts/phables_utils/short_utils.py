@@ -566,8 +566,7 @@ def resolve_short(
                             subpath_count += 1
 
                             # Extend subpaths using coverages of successors and predecessors
-                            u_pred = [x for x in G_edge.predecessors(u)]
-                            v_succ = [x for x in G_edge.successors(v)]
+                            # -----------------------------------
 
                             # Extend subpath using coverages of predecessors
                             for u_pred in G_edge.predecessors(u):
@@ -626,9 +625,9 @@ def resolve_short(
                         else:
                             # Extend subpaths of l=3 based on paired-end reads
                             # aligned to successors and predecessors
-                            u_pred = [x for x in G_edge.predecessors(u)]
-                            v_succ = [x for x in G_edge.successors(v)]
+                            # -----------------------------------
 
+                            # Extend subpath using coverages of predecessors
                             for u_pred in G_edge.predecessors(u):
                                 if junction_pe_coverage[(u_pred[:-1], v[:-1])] > 0:
                                     u_pred_name = unitig_names_rev[u_pred[:-1]]
@@ -648,6 +647,7 @@ def resolve_short(
                                         )
                                         subpath_count += 1
 
+                            # Extend subpath using coverages of successors
                             for v_succ in G_edge.successors(v):
                                 if junction_pe_coverage[(u[:-1], v_succ[:-1])] > 0:
                                     v_succ_name = unitig_names_rev[v_succ[:-1]]
@@ -972,8 +972,7 @@ def resolve_short(
                                 subpath_count += 1
 
                                 # Extend subpaths using coverages of successors and predecessors
-                                u_pred = [x for x in G_edge.predecessors(u)]
-                                v_succ = [x for x in G_edge.successors(v)]
+                                # -----------------------------------
 
                                 # Extend subpath using coverages of predecessors
                                 for u_pred in G_edge.predecessors(u):
@@ -1036,9 +1035,9 @@ def resolve_short(
                             else:
                                 # Extend subpaths of l=3 based on paired-end reads
                                 # aligned to successors and predecessors
-                                u_pred = [x for x in G_edge.predecessors(u)]
-                                v_succ = [x for x in G_edge.successors(v)]
+                                # -----------------------------------
 
+                                # Extend subpath using coverages of predecessors
                                 for u_pred in G_edge.predecessors(u):
                                     if junction_pe_coverage[(u_pred[:-1], v[:-1])] > 0:
                                         u_pred_name = unitig_names_rev[u_pred[:-1]]
@@ -1060,6 +1059,7 @@ def resolve_short(
                                             )
                                             subpath_count += 1
 
+                                # Extend subpath using coverages of successors
                                 for v_succ in G_edge.successors(v):
                                     if junction_pe_coverage[(u[:-1], v_succ[:-1])] > 0:
                                         v_succ_name = unitig_names_rev[v_succ[:-1]]

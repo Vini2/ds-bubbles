@@ -4,3 +4,4 @@ channels:
     - bioconda
 dependencies:
     - koverage>=0.1.8
+    - numpy<2.0.0

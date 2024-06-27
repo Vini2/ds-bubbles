@@ -11,7 +11,7 @@ dependencies:
   - pysam
   - networkx>=2.8.6
   - scipy
-  - numpy
+  - numpy<2.0.0
   - pandas
   - gurobi>=10.0.0
   - more-itertools

@@ -204,7 +204,7 @@ You can use the following command to **only run the genome resolution steps**. P
 phables run --input assembly_graph.gfa --reads fastq --threads 8 phables
 
 # Only run phables core using long reads
-phables run --input assembly_graph.gfa --reads fastq --threads 8 phables --longreads
+phables run --input assembly_graph.gfa --reads fastq --threads 8 --longreads phables
 ```
 
 ### Postprocessing only
